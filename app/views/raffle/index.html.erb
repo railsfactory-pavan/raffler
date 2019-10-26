@@ -1,7 +1,13 @@
 <h1>Raffle</h1>
 
-<from>
-  <input type="text" ng-model="newEntry.name">
-</from>
+<div ng-controller="RaffleCtrl">
+  <from>
+    <input type="text" ng-model="newEntry.name">
+  </from>
 
-{{newEntry.name}}
+  <ul>
+    <li ng-repeat="entry in entries">
+      {{entry.name}}
+    <li>
+  </ul>
+</div>
