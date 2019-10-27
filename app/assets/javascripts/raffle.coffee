@@ -2,12 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-RaffleCtrl = ($scope) ->
-  $scope.entries = [
-    {name: "Larry"}
-    {name: "Curly"}
-    {name: "Moe"}
-  ]
+app = angular.module("Raffler", ["ngResource"])
+
+RaffleCtrl = ($scope, $resource) ->
+  Entry = $resource("/entries/:id", {id: "@id"}, {update: {method: "PUT"}})
+  $scope.entries = Entry.query()
 
   $scope.addEntry = ->
     $scope.entries.push($scope.newEntry)
