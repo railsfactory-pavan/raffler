@@ -9,7 +9,8 @@ RaffleCtrl = ($scope, $resource) ->
   $scope.entries = Entry.query()
 
   $scope.addEntry = ->
-    $scope.entries.push($scope.newEntry)
+    entry = Entry.save($scope.newEntry)
+    $scope.entries.push(entry)
     $scope.newEntry = {}
 
   $scope.drawWinner = ->
@@ -19,4 +20,5 @@ RaffleCtrl = ($scope, $resource) ->
     if pool.length > 0
       entry = pool[Math.floor(Math.random()*pool.length)]
       entry.winner = true
+      entry.$update()
       $scope.lastWinner = entry
